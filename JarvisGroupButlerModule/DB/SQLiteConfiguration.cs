@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace JarvisGroupButlerModule.DB
 {
-    public class SQLiteConfiguration : DbConfiguration
+    internal class SQLiteConfiguration : DbConfiguration
     {
         public SQLiteConfiguration()
         {
@@ -21,7 +21,7 @@ namespace JarvisGroupButlerModule.DB
         }
     }
 
-    public class SQLiteProviderInvariantName : IProviderInvariantName
+    internal class SQLiteProviderInvariantName : IProviderInvariantName
     {
         public static readonly SQLiteProviderInvariantName Instance = new SQLiteProviderInvariantName();
         private SQLiteProviderInvariantName() { }
@@ -29,7 +29,7 @@ namespace JarvisGroupButlerModule.DB
         public string Name { get { return ProviderName; } }
     }
 
-    public class SQLiteDependencyResolver : IDbDependencyResolver
+    internal class SQLiteDependencyResolver : IDbDependencyResolver
     {
         public object GetService(Type type, object key)
         {
@@ -46,7 +46,7 @@ namespace JarvisGroupButlerModule.DB
         }
     }
 
-    class SQLiteDbProviderFactoryResolver : IDbProviderFactoryResolver
+    internal class SQLiteDbProviderFactoryResolver : IDbProviderFactoryResolver
     {
         public static readonly SQLiteDbProviderFactoryResolver Instance = new SQLiteDbProviderFactoryResolver();
         private SQLiteDbProviderFactoryResolver() { }
