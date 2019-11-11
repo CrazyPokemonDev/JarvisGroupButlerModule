@@ -24,7 +24,7 @@ namespace JarvisGroupButlerModule
         public override string Id => "jarvis.official.groupbutler";
         public override string Name => "Group butler";
         public override Version Version => Version.Parse("0.0.1");
-        private const string mlDataFilePath = "Training\\data.json";
+        private const string mlDataFilePath = "data.json";
         public override TaskPredictionInput[] MLTrainingData => JsonConvert.DeserializeObject<TaskPredictionInput[]>(File.ReadAllText(mlDataFilePath));
         private readonly MemoryCache adminCache = new MemoryCache("JarvisAdminCache");
         private static readonly TimeSpan adminCachePersistenceTimeSpan = TimeSpan.FromMinutes(15);
