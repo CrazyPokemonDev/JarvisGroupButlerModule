@@ -31,18 +31,14 @@ namespace JarvisGroupButlerModule
         private static readonly string baseDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             "Crazypokemondev\\JarvisGroupButlerModule\\");
         private static readonly string dbFilePath = Path.Combine(baseDirectory, "db.sqlite");
-        private readonly JarvisContext db;
+        private JarvisContext db;
 
         #region Startup
-        public GroupButlerModule()
-        {
-            Directory.CreateDirectory(baseDirectory);
-            db = new JarvisContext(dbFilePath);
-        }
-
         public override void Start(Jarvis jarvis)
         {
             base.Start(jarvis);
+            Directory.CreateDirectory(baseDirectory);
+            db = new JarvisContext(dbFilePath);
             jarvis.OnMessage += (sender, e) =>
             {
                 AddOrUpdateUser(e.Message.From);
