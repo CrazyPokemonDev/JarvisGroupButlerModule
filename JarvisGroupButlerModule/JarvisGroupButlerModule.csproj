@@ -79,9 +79,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Training\data.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Training\data.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

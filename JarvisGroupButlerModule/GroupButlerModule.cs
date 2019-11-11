@@ -18,7 +18,7 @@ using File = System.IO.File;
 
 namespace JarvisGroupButlerModule
 {
-    [JarvisModule(new string[] { "EntityFramework.dll", "EntityFramework.SqlServer.dll", "System.Data.SQLite.EF6.dll", "SQLite.CodeFirst.dll" })]
+    [JarvisModule(new string[] { "EntityFramework.dll", "EntityFramework.SqlServer.dll", "System.Data.SQLite.EF6.dll", "SQLite.CodeFirst.dll", "data.json" })]
     public class GroupButlerModule : JarvisModule
     {
         public override string Id => "jarvis.official.groupbutler";
