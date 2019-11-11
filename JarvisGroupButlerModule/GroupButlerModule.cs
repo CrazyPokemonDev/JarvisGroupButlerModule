@@ -5,6 +5,7 @@ using JarvisModuleCore.ML;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -18,7 +19,8 @@ using File = System.IO.File;
 
 namespace JarvisGroupButlerModule
 {
-    [JarvisModule(new string[] { "EntityFramework.dll", "EntityFramework.SqlServer.dll", "System.Data.SQLite.EF6.dll", "SQLite.CodeFirst.dll", "GroupButler\\data.json" })]
+    [JarvisModule(new string[] { "EntityFramework.dll", "EntityFramework.SqlServer.dll", "System.Data.SQLite.EF6.dll", 
+        "SQLite.CodeFirst.dll", "GroupButler\\data.json", "System.Data.SQLite.dll", "SQLite.Interop.dll" })]
     public class GroupButlerModule : JarvisModule
     {
         public override string Id => "jarvis.official.groupbutler";

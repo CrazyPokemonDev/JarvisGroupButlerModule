@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace JarvisGroupButlerModule.DB
 {
+    [DbConfigurationType(typeof(SQLiteConfiguration))]
     internal class JarvisContext : DbContext
     {
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -18,7 +19,7 @@ namespace JarvisGroupButlerModule.DB
 
         public JarvisContext(string filename) : base($"Data Source={filename}")
         {
-
+            
         }
 
         public DbSet<DbUser> Users { get; set; }

@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="DB\DbUser.cs" />
     <Compile Include="DB\JarvisContext.cs" />
+    <Compile Include="DB\SQLiteConfiguration.cs" />
     <Compile Include="GroupButlerModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,6 +74,9 @@
     </PackageReference>
     <PackageReference Include="SQLite.CodeFirst">
       <Version>1.5.2.28</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite.Core">
+      <Version>1.0.112</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite.EF6">
       <Version>1.0.112</Version>
