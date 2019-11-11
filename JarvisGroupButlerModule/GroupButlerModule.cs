@@ -36,6 +36,7 @@ namespace JarvisGroupButlerModule
         #region Startup
         public GroupButlerModule()
         {
+            Directory.CreateDirectory(baseDirectory);
             db = new JarvisContext(dbFilePath);
         }
 
