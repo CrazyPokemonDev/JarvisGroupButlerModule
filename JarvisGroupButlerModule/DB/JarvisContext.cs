@@ -16,7 +16,7 @@ namespace JarvisGroupButlerModule.DB
             Database.SetInitializer(sqliteConnectionInitializer);
         }
 
-        public JarvisContext(string filename) : base($"Data Source={filename};Version=3;")
+        public JarvisContext(string filename) : base($"Data Source={filename}")
         {
 
         }

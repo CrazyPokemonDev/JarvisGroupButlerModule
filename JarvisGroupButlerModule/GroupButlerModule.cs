@@ -18,13 +18,13 @@ using File = System.IO.File;
 
 namespace JarvisGroupButlerModule
 {
-    [JarvisModule(new string[] { "EntityFramework.dll", "EntityFramework.SqlServer.dll", "System.Data.SQLite.EF6.dll", "SQLite.CodeFirst.dll", "data.json" })]
+    [JarvisModule(new string[] { "EntityFramework.dll", "EntityFramework.SqlServer.dll", "System.Data.SQLite.EF6.dll", "SQLite.CodeFirst.dll", "GroupButler\\data.json" })]
     public class GroupButlerModule : JarvisModule
     {
         public override string Id => "jarvis.official.groupbutler";
         public override string Name => "Group butler";
         public override Version Version => Version.Parse("0.0.1");
-        private const string mlDataFilePath = "data.json";
+        private const string mlDataFilePath = "GroupButler\\data.json";
         public override TaskPredictionInput[] MLTrainingData => JsonConvert.DeserializeObject<TaskPredictionInput[]>(File.ReadAllText(mlDataFilePath));
         private readonly MemoryCache adminCache = new MemoryCache("JarvisAdminCache");
         private static readonly TimeSpan adminCachePersistenceTimeSpan = TimeSpan.FromMinutes(15);
