@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JarvisGroupButlerModule.DB
 {
-    public class JarvisContext : DbContext
+    internal class JarvisContext : DbContext
     {
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
