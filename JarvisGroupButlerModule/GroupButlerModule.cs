@@ -13,21 +13,26 @@ using System.Runtime.Caching;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using File = System.IO.File;
 
 namespace JarvisGroupButlerModule
 {
-    [JarvisModule(new string[] { "EntityFramework.dll", "EntityFramework.SqlServer.dll", "System.Data.SQLite.EF6.dll", 
+    [JarvisModule(new string[] { "EntityFramework.dll", "EntityFramework.SqlServer.dll", "System.Data.SQLite.EF6.dll",
         "SQLite.CodeFirst.dll", "GroupButler\\data.json", "System.Data.SQLite.dll", "SQLite.Interop.dll" })]
     public class GroupButlerModule : JarvisModule
     {
         public override string Id => "jarvis.official.groupbutler";
         public override string Name => "Group butler";
         public override Version Version => Version.Parse("0.0.1");
-        private const string mlDataFilePath = "GroupButler\\data.json";
-        public override TaskPredictionInput[] MLTrainingData => JsonConvert.DeserializeObject<TaskPredictionInput[]>(File.ReadAllText(mlDataFilePath));
+        #region Training Data
+        public override TaskPredictionInput[] MLTrainingData => new TaskPredictionInput[]
+        {
+
+        };
+        #endregion
         private readonly MemoryCache adminCache = new MemoryCache("JarvisAdminCache");
         private static readonly TimeSpan adminCachePersistenceTimeSpan = TimeSpan.FromMinutes(15);
         private static readonly string baseDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
@@ -91,7 +96,7 @@ namespace JarvisGroupButlerModule
                     case MessageEntityType.TextMention:
                         return entity.User.Id;
                     case MessageEntityType.Mention:
-                        string username = message.EntityValues.ElementAt(i);
+                        string username = message.EntityValues.ElementAt(i).TrimStart('@');
                         return db.Users.Where(x => x.Username == username).FirstOrDefault()?.Id;
                 }
             }
@@ -129,9 +134,17 @@ namespace JarvisGroupButlerModule
                 return;
             }
             var target = targetUserId.Value;
-            await jarvis.UnbanChatMemberAsync(message.Chat.Id, target); // Why use unban to kick a user? Because KickChatMember bans them. 
-                                                                        // (By the way, to unban a user use RestrictChatMember with everything set to true.
-                                                                        // Obviously.)
+            try
+            {
+                await jarvis.UnbanChatMemberAsync(message.Chat.Id, target); // Why use unban to kick a user? Because KickChatMember bans them. 
+                                                                            // (By the way, to unban a user use RestrictChatMember with everything set to true.
+                                                                            // Obviously.)
+            }
+            catch (ApiRequestException)
+            {
+                await jarvis.ReplyAsync(message, "Sorry, I cannot kick this user. Perhaps I lack the necessary rights to do so?");
+                return;
+            }
             await jarvis.ReplyAsync(message, "As you wish.");
         }
         #endregion

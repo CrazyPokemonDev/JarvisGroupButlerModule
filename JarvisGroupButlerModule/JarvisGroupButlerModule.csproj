@@ -70,10 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="JarvisButlerBot.ModuleCore">
-      <Version>1.1.0</Version>
+      <Version>1.1.1</Version>
     </PackageReference>
     <PackageReference Include="SQLite.CodeFirst">
-      <Version>1.5.2.28</Version>
+      <Version>1.5.3.29</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite.Core">
       <Version>1.0.112</Version>
@@ -81,9 +81,6 @@
     <PackageReference Include="System.Data.SQLite.EF6">
       <Version>1.0.112</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Training\data.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
