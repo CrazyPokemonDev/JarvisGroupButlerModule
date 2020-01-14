@@ -126,7 +126,7 @@ namespace JarvisGroupButlerModule
                 await jarvis.ReplyAsync(message, "I'm sorry, I don't think you are authorized to ask for that.");
                 return;
             }
-            var targetUserId = message.ReplyToMessage?.From.Id ?? ExtractUserIfOnlyOne(message) ?? ExtractIdIfOnlyOne(message.Text);
+            var targetUserId = ExtractUserIfOnlyOne(message) ?? message.ReplyToMessage?.From.Id ?? ExtractIdIfOnlyOne(message.Text);
             if (!targetUserId.HasValue)
             {
                 await jarvis.ReplyAsync(message, "I'm sorry, I can't quite tell who you are talking about...\n" +
